@@ -7,14 +7,14 @@ import const
 
 
 # https://discordpy.readthedocs.io/ja/latest/intents.html
-# from discord import Intents
+from discord import Intents
 
 
 class MyBot(Bot):
     def __init__(self) -> None:
         super().__init__(
             command_prefix=when_mentioned_or(const.BOT_PREFIX),
-            # intents=Intents.all()
+            intents=Intents.all()
         )
         print("Launching...")
 
