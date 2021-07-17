@@ -18,12 +18,12 @@ class Setup(Cog):
         beta_role: discord.Role = discord.utils.get(guild.roles, name=f"beta-team")
 
         if alpha_role is None:
-            alpha_role = await guild.create_role(name=f"alpha-team")
+            await guild.create_role(name=f"alpha-team")
         else:
             await ctx.send(f"alpha-role has been created.")
 
         if beta_role is None:
-            beta_role = await guild.create_role(name=f"beta-team")
+            await guild.create_role(name=f"beta-team")
         else:
             await ctx.send(f"beta-role has been created.")
 
@@ -31,6 +31,8 @@ class Setup(Cog):
         beta_category: discord.channel.CategoryChannel = discord.utils.get(guild.categories, name="beta-team")
 
         if alpha_category is None:
+            alpha_role: discord.Role = discord.utils.get(guild.roles, name=f"alpha-team")
+
             overwrites = {
                 alpha_role: discord.PermissionOverwrite(read_messages=True),
                 guild.me:  discord.PermissionOverwrite(read_messages=True),
@@ -42,6 +44,8 @@ class Setup(Cog):
             await ctx.send("alpha-category has been created.")
 
         if beta_category is None:
+            beta_role: discord.Role = discord.utils.get(guild.roles, name=f"beta-team")
+
             overwrites = {
                 beta_role: discord.PermissionOverwrite(read_messages=True),
                 guild.me: discord.PermissionOverwrite(read_messages=True),
