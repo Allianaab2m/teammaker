@@ -11,7 +11,8 @@ class Team(Cog):
 
     @command()
     async def team(self, ctx: Context) -> None:
-
+        member = ctx.author.voice.channel.members
+        # メンバーを振り分ける
 
 
 def setup(bot: Bot) -> None:

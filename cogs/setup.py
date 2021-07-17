@@ -18,12 +18,12 @@ class Setup(Cog):
         beta_role: discord.Role = discord.utils.get(guild.roles, name=f"beta-team")
 
         if alpha_role is None:
-            await guild.create_role(name=f"alpha-team")
+            alpha_role = await guild.create_role(name=f"alpha-team")
         else:
             await ctx.send(f"alpha-role has been created.")
 
         if beta_role is None:
-            await guild.create_role(name=f"beta-team")
+            beta_role = await guild.create_role(name=f"beta-team")
         else:
             await ctx.send(f"beta-role has been created.")
 
@@ -31,24 +31,26 @@ class Setup(Cog):
         beta_category: discord.channel.CategoryChannel = discord.utils.get(guild.categories, name="beta-team")
 
         if alpha_category is None:
-
             overwrites = {
-                # alpha_role: discord.PermissionOverWrite(read_messages=True),
-                # guild.me:  discord.PermissionOverWrite(read_messages=True),
+                alpha_role: discord.PermissionOverwrite(read_messages=True),
+                guild.me:  discord.PermissionOverwrite(read_messages=True),
                 guild.default_role: discord.PermissionOverwrite(read_messages=False)
             }
 
             alpha_category = await guild.create_category(name="alpha-team", overwrites=overwrites)
+        else:
+            await ctx.send("alpha-category has been created.")
 
         if beta_category is None:
-
             overwrites = {
-                # beta_role: discord.PermissionOverWrite(read_messages=True),
-                # guild.me: discord.PermissionOverWrite(read_messages=True),
+                beta_role: discord.PermissionOverwrite(read_messages=True),
+                guild.me: discord.PermissionOverwrite(read_messages=True),
                 guild.default_role: discord.PermissionOverwrite(read_messages=False)
             }
 
             beta_category = await guild.create_category(name="beta-team", overwrites=overwrites)
+        else:
+            await ctx.send("beta-category has been created.")
 
         alpha_text: discord.channel.TextChannel = discord.utils.get(guild.text_channels, name=f"alpha-text")
         beta_text: discord.channel.TextChannel = discord.utils.get(guild.text_channels, name=f"beta-text")

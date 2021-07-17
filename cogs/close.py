@@ -22,6 +22,9 @@ class Close(Cog):
         alpha_role: discord.Role = discord.utils.get(guild.roles, name=f"alpha-team")
         beta_role: discord.Role = discord.utils.get(guild.roles, name=f"beta-team")
 
+        await guild.me.add_roles(alpha_role)
+        await guild.me.add_roles(beta_role)
+
         if alpha_text is not None:
             await alpha_text.delete()
 
@@ -34,17 +37,17 @@ class Close(Cog):
         if beta_voice is not None:
             await beta_voice.delete()
 
-        if alpha_role is not None:
-            await alpha_role.delete()
-
-        if beta_role is not None:
-            await beta_role.delete()
-
         if alpha_category is not None:
             await alpha_category.delete()
 
         if beta_category is not None:
             await beta_category.delete()
+
+        if alpha_role is not None:
+            await alpha_role.delete()
+
+        if beta_role is not None:
+            await beta_role.delete()
 
 
 def setup(bot: Bot) -> None:
