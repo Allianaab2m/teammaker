@@ -17,10 +17,11 @@ class Team(Cog):
 
             member: list = [members for members in ctx.author.voice.channel.members]
             # members_name = [members.name for members in ctx.author.voice.channel.members]
-            member_per_teams: int = round(len(member)/2)
+            # member_per_teams: int = round(len(member)/2)
 
-            alpha_members = random.sample(member, member_per_teams)
-            beta_members = random.sample(member, len(member) - member_per_teams)
+            random.shuffle(member)
+            alpha_members = member[0::2]
+            beta_members = member[1::2]
 
             alpha_members_name = [alpha_members.name for alpha_members in alpha_members]
             beta_members_name = [beta_members.name for beta_members in beta_members]

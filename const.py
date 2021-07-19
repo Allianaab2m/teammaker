@@ -8,4 +8,4 @@ load_dotenv()
 DISCORD_BOT_TOKEN = getenv("DISCORD_BOT_TOKEN")
 
 # bot profile
-BOT_PREFIX = "?"
+BOT_PREFIX = "tm."
